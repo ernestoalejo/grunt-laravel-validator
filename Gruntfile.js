@@ -16,6 +16,7 @@ module.exports = function(grunt) {
       all: [
         'Gruntfile.js',
         'tasks/*.js',
+        'test/fixtures/*.js',
         '<%= nodeunit.tests %>',
       ],
       options: {
@@ -30,21 +31,21 @@ module.exports = function(grunt) {
 
     // Configuration to be run (and then tested).
     laravel_validator: {
-      default_options: {
-        options: {
-        },
-        files: {
-          'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123'],
-        },
-      },
-      custom_options: {
-        options: {
-          separator: ': ',
-          punctuation: ' !!!',
-        },
-        files: {
-          'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123'],
-        },
+      /*full_example: {
+        files: [
+          src: 'test/fixtures/full_example.js',
+          dest: 'tmp/full_example.php',
+        ],
+      },*/
+      min_example: {
+        files: [
+          {
+            src: 'min_example.js',
+            cwd: 'test/fixtures',
+            dest: 'tmp',
+            expand: true,
+          },
+        ],
       },
     },
 

@@ -5,46 +5,28 @@
  * Copyright (c) 2013 Ernesto Alejo
  * Licensed under the MIT license.
  */
-
 'use strict';
 
-module.exports = function(grunt) {
 
-  // Please see the Grunt documentation for more information regarding task
-  // creation: http://gruntjs.com/creating-tasks
+module.exports = function(grunt) {
+  var Generator = require('../lib/generator.js');
 
   grunt.registerMultiTask('laravel_validator', 'Generate PHP validations that use Laravel from JS descriptions of the input data format', function() {
-    // Merge task-specific and/or target-specific options with these defaults.
-    var options = this.options({
-      punctuation: '.',
-      separator: ', '
-    });
+    var path = require('path');
 
-    // Iterate over all specified file groups.
-    this.files.forEach(function(f) {
-      // Concat specified files.
-      var src = f.src.filter(function(filepath) {
-        // Warn on and remove invalid source files (if nonull was set).
-        if (!grunt.file.exists(filepath)) {
-          grunt.log.warn('Source file "' + filepath + '" not found.');
-          return false;
-        } else {
-          return true;
-        }
-      }).map(function(filepath) {
-        // Read file source.
-        return grunt.file.read(filepath);
-      }).join(grunt.util.normalizelf(options.separator));
+    this.files.forEach(function(file) {
+      var src = file.src[0];
+      if (!grunt.file.exists(src)) {
+        grunt.log.warn('Source file "' + src + '" not found.');
+        return;
+      }
+      file.dest = file.dest.replace(/\.js$/i, '.php');
 
-      // Handle options.
-      src += options.punctuation;
+      var source = require(path.resolve(src));
+      var generator = new Generator(source);
+      grunt.file.write(file.dest, generator.run());
 
-      // Write the destination file.
-      grunt.file.write(f.dest, src);
-
-      // Print a success message.
-      grunt.log.writeln('File "' + f.dest + '" created.');
+      grunt.log.writeln('File "' + file.dest + '" created.');
     });
   });
-
 };
