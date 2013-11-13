@@ -9,7 +9,7 @@
 
 
 module.exports = function(grunt) {
-  var Generator = require('../lib/generator.js');
+  var Generator = require('../lib/generator.js')(grunt);
 
   grunt.registerMultiTask('laravel_validator', 'Generate PHP validations that use Laravel from JS descriptions of the input data format', function() {
     var path = require('path');
