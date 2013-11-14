@@ -13,8 +13,9 @@ module.exports = function() {
       'string',
       'email',
 
-      'minlength:3',
       'length:3',
+      'minlength:4',
+      'maxlength:5',
 
       'store:fsv',
 
