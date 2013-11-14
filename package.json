@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "homepage": "https://github.com/ernestoalejo/grunt-laravel-validator",
   "author": {
-    "name": "Ernesto Alejo",
+    "name": "Ernesto Alejo"
   },
   "repository": {
     "type": "git",
@@ -37,5 +37,8 @@
   },
   "keywords": [
     "gruntplugin"
-  ]
+  ],
+  "dependencies": {
+    "change-case": "~1.0.2"
+  }
 }
