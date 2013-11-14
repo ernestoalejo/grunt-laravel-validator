@@ -18,6 +18,8 @@ module.exports = function() {
       'use:MyNamespace\\MyClass2',
       'use:MyNamespace\\MyClass1',
       'custom:$store[\'fsv\'] == \'foo\'',
+      'in:value1,value2,value3',
+      ['in', ['before:after', 'before2:after2']],
     ],
     fintegerv: [
       'integer',
