@@ -8,19 +8,28 @@ module.exports = function() {
     finteger: ['integer'],
     fboolean: ['boolean'],
 
-    // All validations for each field
+    // Most of the allowed processors for each field
     fstringv: [
       'string',
       'minlength:3',
       'email',
       'store:fsv',
+      'use:MyNamespace\\MyClass1',
+      'use:MyNamespace\\MyClass2',
+      'use:MyNamespace\\MyClass1',
       'custom:$store[\'fsv\'] == \'foo\'',
     ],
     fintegerv: [
       'integer',
       'store:fiv',
+      'use:MyNamespace\\MyClass1',
       'custom:$store[\'fiv\'] > 3',
     ],
+    fdatev: [
+      'string',
+      'date',
+    ],
+
 
     /*
     "Object":      objectField,

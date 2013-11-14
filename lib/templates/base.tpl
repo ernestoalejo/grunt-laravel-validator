@@ -5,7 +5,7 @@ use App;
 use Input;
 use Log;
 use Str;
-<%= use %>
+<%= uses %>
 
 class <%= classname %> {
 
