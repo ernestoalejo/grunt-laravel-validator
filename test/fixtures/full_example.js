@@ -11,15 +11,23 @@ module.exports = function() {
     // Most of the allowed processors for each field
     fstringv: [
       'string',
-      'minlength:3',
       'email',
+
+      'minlength:3',
+      'length:3',
+
       'store:fsv',
+
       'use:MyNamespace\\MyClass1',
       'use:MyNamespace\\MyClass2',
       'use:MyNamespace\\MyClass1',
       'custom:$store[\'fsv\'] == \'foo\'',
+
       'in:value1,value2,value3',
-      ['in', ['before:after', 'before2:after2']],
+      ['in', ['before,after', 'before2,after2']],
+
+      'use:Config',
+      'inarray:Config::get(\'example\')',
     ],
     fintegerv: [
       'integer',

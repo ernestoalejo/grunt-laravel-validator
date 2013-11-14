@@ -4,7 +4,6 @@
 use App;
 use Input;
 use Log;
-use Str;
 <%= uses %>
 
 class <%= classname %> {
