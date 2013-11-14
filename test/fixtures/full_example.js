@@ -29,12 +29,20 @@ module.exports = function() {
 
       'use:Config',
       'inarray:Config::get(\'example\')',
+
+      'match:fsv',
     ],
     fintegerv: [
       'integer',
+
       'store:fiv',
       'use:MyNamespace\\MyClass1',
+
       'custom:$store[\'fiv\'] > 3',
+
+      'minvalue:3',
+      'maxvalue:7',
+      'positive',
     ],
     fdatev: [
       'string',
