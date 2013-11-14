@@ -8,14 +8,25 @@ module.exports = function() {
     finteger: ['integer'],
     fboolean: ['boolean'],
 
-    /*"Boolean":     booleanField,
+    // All validations for each field
+    fstringv: [
+      'string',
+      'minlength:3',
+      'email',
+      'store:fsv',
+      'custom:$store[\'fsv\'] == \'foo\'',
+    ],
+    fintegerv: [
+      'integer',
+      'store:fiv',
+      'custom:$store[\'fiv\'] > 3',
+    ],
+
+    /*
     "Object":      objectField,
     "Array":       arrayField,
     "Conditional": conditionalField,*/
-
     /*
-
-
     page: ['string', 'required'],
     lang: ['string', 'required', 'inarray:Config::get(\'langs\')', 'use:Config'],
 
