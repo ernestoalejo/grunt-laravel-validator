@@ -31,16 +31,10 @@ module.exports = function(grunt) {
 
     // Configuration to be run (and then tested).
     laravel_validator: {
-      /*full_example: {
-        files: [
-          src: 'test/fixtures/full_example.js',
-          dest: 'tmp/full_example.php',
-        ],
-      },*/
-      min_example: {
+      all_examples: {
         files: [
           {
-            src: 'min_example.js',
+            src: '*.js',
             cwd: 'test/fixtures',
             dest: 'tmp',
             expand: true,

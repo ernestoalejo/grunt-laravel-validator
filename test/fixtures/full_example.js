@@ -3,6 +3,16 @@
 
 module.exports = function() {
   return {
+    // All type of fields
+    fstring: ['string'],
+    finteger: ['integer'],
+    fboolean: ['boolean'],
+
+    /*"Boolean":     booleanField,
+    "Object":      objectField,
+    "Array":       arrayField,
+    "Conditional": conditionalField,*/
+
     /*
 
 
