@@ -1,4 +1,4 @@
-    $value = $<%= object %>[<%= name %>'];
+    $value = $<%= object %>[<%= name %>];
     if (is_null($value)) {
       $value = 0;
     }
