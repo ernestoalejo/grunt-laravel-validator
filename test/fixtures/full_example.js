@@ -49,6 +49,7 @@ module.exports = function() {
     fdatev: [
       'string',
       'date',
+      'mindate:today',
     ],
 
 
