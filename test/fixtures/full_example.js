@@ -12,6 +12,8 @@ module.exports = function() {
     fstringv: [
       'string',
       'email',
+      'url',
+      'regexp:/^[a-b]$/',
 
       'length:3',
       'minlength:4',
