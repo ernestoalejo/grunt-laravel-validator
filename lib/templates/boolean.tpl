@@ -1,4 +1,4 @@
-    $value = $<%= object %>[<%= key %>'];
+    $value = $<%= object %>[<%= name %>'];
     if (is_null($value)) {
       $value = 0;
     }
@@ -19,5 +19,5 @@
       }
     }
     if (!is_bool($value)) {
-      self::error($data, 'key <%= name %> is not a boolean');
+      self::error($data, 'key ' . <%= name %> . ' is not a boolean');
     }

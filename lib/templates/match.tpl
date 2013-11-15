@@ -1,3 +1,3 @@
     if ($value !== $store['<%= other %>']) {
-      self::error($data, 'key <%= name %> breaks the match validation');
+      self::error($data, 'key ' . <%= name %> . ' breaks the match validation');
     }

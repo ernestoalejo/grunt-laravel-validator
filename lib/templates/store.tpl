@@ -1,1 +1,1 @@
-    $store['<%= key %>'] = $value;
+    $store['<%= name %>'] = $value;
