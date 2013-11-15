@@ -57,6 +57,16 @@ module.exports = function(grunt) {
           },
         ],
       },
+      example: {
+        files: [
+          {
+            src: 'recursive_example.js',
+            cwd: 'test/fixtures',
+            dest: 'tmp',
+            expand: true,
+          },
+        ],
+      },
     },
 
     // Unit tests.

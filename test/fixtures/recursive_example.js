@@ -3,6 +3,19 @@
 
 module.exports = function() {
   return {
+    fobj: {
+      kind: 'object',
+      fields: {
+        fstring: ['string'],
+
+        fobj2: {
+          kind: 'object',
+          fields: {
+            finteger: ['integer'],
+          },
+        },
+      },
+    },
     /*
     "Object":      objectField,
     "Array":       arrayField,
