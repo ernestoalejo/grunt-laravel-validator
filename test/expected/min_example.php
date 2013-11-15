@@ -6,7 +6,6 @@ use Input;
 use Log;
 use Str;
 
-
 class MinExample {
 
   public static function validate() {

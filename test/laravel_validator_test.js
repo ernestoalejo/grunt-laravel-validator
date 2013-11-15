@@ -39,8 +39,8 @@ exports.laravel_validator = {
   full_example: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/full_example.php');
-    var expected = grunt.file.read('test/expected/full_example.php');
+    var actual = grunt.file.read('tmp/full_plain_example.php');
+    var expected = grunt.file.read('test/expected/full_plain_example.php');
     test.equal(actual, expected, 'should describe what the full behavior is.');
 
     test.done();
