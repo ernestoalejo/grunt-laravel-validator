@@ -1,3 +1,3 @@
-    if (!isset($<%= object %>['<%= name %>'])) {
-      $<%= object %>['<%= name %>'] = null;
+    if (!isset($<%= object %>[<%= key %>])) {
+      $<%= object %>[<%= key %>] = null;
     }

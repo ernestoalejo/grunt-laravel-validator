@@ -3,7 +3,7 @@
 
 module.exports = function() {
   return {
-    fobj: {
+    /*fobj: {
       kind: 'object',
       fields: {
         fstring: ['string'],
@@ -15,6 +15,11 @@ module.exports = function() {
           },
         },
       },
+    },*/
+
+    farr: {
+      kind: 'array',
+      fields: ['string'],
     },
     /*
     "Object":      objectField,
