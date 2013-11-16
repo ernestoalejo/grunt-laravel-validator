@@ -254,9 +254,6 @@ class RecursiveExample {
           }
 
           $value = $data['farr1'][$i2][$i3][$i4]['inner'];
-          if (is_null($value)) {
-            $value = 0;
-          }
           if (is_string($value)) {
             if ($value === 'true' || $value === '1' || $value === 'on') {
               $value = true;
@@ -465,9 +462,6 @@ class RecursiveExample {
           }
 
           $value = $data['myarr_extended'][$i6]['qux']['myqux'];
-          if (is_null($value)) {
-            $value = 0;
-          }
           if (is_string($value)) {
             if ($value === 'true' || $value === '1' || $value === 'on') {
               $value = true;
