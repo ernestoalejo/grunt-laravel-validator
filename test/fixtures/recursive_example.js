@@ -3,7 +3,7 @@
 
 module.exports = function() {
   return {
-    /*fobj: {
+    fobj: {
       kind: 'object',
       fields: {
         fstring: ['string'],
@@ -47,18 +47,79 @@ module.exports = function() {
           },
         },
       },
-    },*/
+    },
 
     ffoo: ['string', 'store:foo'],
+    fbar: ['string', 'store:bar'],
 
-    /*fconditional: {
+    conditional: {
       kind: 'conditional',
       condition: '$store[\'foo\'] == \'bar\'',
       requiresStored: ['foo'],
       fields: {
-        fstring: ['string'],
+        kind: 'object',
+        fields: {
+          fstring: ['string'],
+        }
       }
-    }*/
+    },
+
+    myobj: {
+      kind: 'conditional',
+      condition: 'true',
+      fields: ['string', 'required'],
+    },
+
+    myarr: {
+      kind: 'array',
+      fields: {
+        kind: 'conditional',
+        condition: false,
+        fields: ['integer'],
+      },
+    },
+
+    myarr_extended: {
+      kind: 'array',
+      fields: {
+        kind: 'conditional',
+        condition: false,
+        fields: {
+          kind: 'object',
+          fields: {
+            qux: {
+              kind: 'conditional',
+              condition: '$store[\'bar\'] === \'bar\'',
+              requiresStored: ['bar'],
+              fields: {
+                kind: 'object',
+                fields: {
+                  myqux: ['boolean'],
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+
+    myarr_recursive: {
+      kind: 'array',
+      fields: {
+        kind: 'array',
+        fields: {
+          kind: 'array',
+          fields: {
+            kind: 'array',
+            fields: {
+              kind: 'conditional',
+              condition: 'true != false',
+              fields: ['string'],
+            },
+          },
+        },
+      },
+    },
   };
 };
 
