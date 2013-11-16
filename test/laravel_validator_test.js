@@ -48,8 +48,8 @@ exports.laravel_validator = {
   recursive_example: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/recursive_plain_example.php');
-    var expected = grunt.file.read('test/expected/recursive_plain_example.php');
+    var actual = grunt.file.read('tmp/recursive_example.php');
+    var expected = grunt.file.read('test/expected/recursive_example.php');
     test.equal(actual, expected, 'should describe what the recursive behavior is.');
 
     test.done();

@@ -45,7 +45,7 @@ class FullPlainExample {
       $value = strval($value);
     }
     if (!is_string($value)) {
-      self::error($data, 'key fstring is not a string');
+      self::error($data, 'key ' . 'fstring' . ' is not a string');
     }
 
     $valid['fstring'] = $value;
@@ -64,7 +64,7 @@ class FullPlainExample {
       }
     }
     if (!is_int($value)) {
-      self::error($data, 'key finteger is not an integer');
+      self::error($data, 'key ' . 'finteger' . ' is not an integer');
     }
 
     $valid['finteger'] = $value;
@@ -94,10 +94,29 @@ class FullPlainExample {
       }
     }
     if (!is_bool($value)) {
-      self::error($data, 'key fboolean is not a boolean');
+      self::error($data, 'key ' . 'fboolean' . ' is not a boolean');
     }
 
     $valid['fboolean'] = $value;
+
+    if (!isset($data['fother'])) {
+      $data['fother'] = null;
+    }
+
+    $value = $data['fother'];
+    if (is_null($value)) {
+      $value = '';
+    }
+    if (is_int($value) || is_float($value)) {
+      $value = strval($value);
+    }
+    if (!is_string($value)) {
+      self::error($data, 'key ' . 'fother' . ' is not a string');
+    }
+
+    $store['other'] = $value;
+
+    $valid['fother'] = $value;
 
     if (!isset($data['fstringv'])) {
       $data['fstringv'] = null;
@@ -111,53 +130,53 @@ class FullPlainExample {
       $value = strval($value);
     }
     if (!is_string($value)) {
-      self::error($data, 'key fstringv is not a string');
+      self::error($data, 'key ' . 'fstringv' . ' is not a string');
     }
 
     if (!preg_match('/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}$/', $value)) {
-      self::error($data, 'key fstringv breaks the email validation');
+      self::error($data, 'key ' . 'fstringv' . ' breaks the email validation');
     }
 
     if (!preg_match('/^(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?$/', $value)) {
-      self::error($data, 'key fstringv breaks the url validation');
+      self::error($data, 'key ' . 'fstringv' . ' breaks the url validation');
     }
 
     if (!preg_match('/^[a-b]$/', $value)) {
-      self::error($data, 'key fstringv breaks the regexp validation');
+      self::error($data, 'key ' . 'fstringv' . ' breaks the regexp validation');
     }
 
     if (Str::length($value) != 3) {
-      self::error($data, 'key fstringv breaks the length validation');
+      self::error($data, 'key ' . 'fstringv' . ' breaks the length validation');
     }
 
     if (Str::length($value) < 4) {
-      self::error($data, 'key fstringv breaks the minlength validation');
+      self::error($data, 'key ' . 'fstringv' . ' breaks the minlength validation');
     }
 
     if (Str::length($value) > 5) {
-      self::error($data, 'key fstringv breaks the maxlength validation');
+      self::error($data, 'key ' . 'fstringv' . ' breaks the maxlength validation');
+    }
+
+    if (!in_array($value, array('value1', 'value2', 'value3'), TRUE)) {
+      self::error($data, 'key ' . 'fstringv' . ' breaks the in validation');
+    }
+
+    if (!in_array($value, array('before,after', 'before2,after2'), TRUE)) {
+      self::error($data, 'key ' . 'fstringv' . ' breaks the in validation');
+    }
+
+    if (!in_array($value, Config::get('example'), TRUE)) {
+      self::error($data, 'key ' . 'fstringv' . ' breaks the inarray validation');
+    }
+
+    if ($value !== $store['other']) {
+      self::error($data, 'key ' . 'fstringv' . ' breaks the match validation');
     }
 
     $store['fsv'] = $value;
 
     if ($store['fsv'] == 'foo') {
-      self::error($data, 'key fstringv breaks the custom validation');
-    }
-
-    if (!in_array($value, array('value1', 'value2', 'value3'), TRUE)) {
-      self::error($data, 'key fstringv breaks the in validation');
-    }
-
-    if (!in_array($value, array('before,after', 'before2,after2'), TRUE)) {
-      self::error($data, 'key fstringv breaks the in validation');
-    }
-
-    if (!in_array($value, Config::get('example'), TRUE)) {
-      self::error($data, 'key fstringv breaks the inarray validation');
-    }
-
-    if ($value !== $store['fsv']) {
-      self::error($data, 'key fstringv breaks the match validation');
+      self::error($data, 'key ' . 'fstringv' . ' breaks the custom validation');
     }
 
     $valid['fstringv'] = $value;
@@ -176,25 +195,25 @@ class FullPlainExample {
       }
     }
     if (!is_int($value)) {
-      self::error($data, 'key fintegerv is not an integer');
+      self::error($data, 'key ' . 'fintegerv' . ' is not an integer');
+    }
+
+    if ($value < 3) {
+      self::error($data, 'key ' . 'fintegerv' . ' breaks the minvalue validation');
+    }
+
+    if ($value > 7) {
+      self::error($data, 'key ' . 'fintegerv' . ' breaks the maxvalue validation');
+    }
+
+    if ($value < 0) {
+      self::error($data, 'key ' . 'fintegerv' . ' breaks the positive validation');
     }
 
     $store['fiv'] = $value;
 
     if ($store['fiv'] > 3) {
-      self::error($data, 'key fintegerv breaks the custom validation');
-    }
-
-    if ($value < 3) {
-      self::error($data, 'key fintegerv breaks the minvalue validation');
-    }
-
-    if ($value > 7) {
-      self::error($data, 'key fintegerv breaks the maxvalue validation');
-    }
-
-    if ($value < 0) {
-      self::error($data, 'key fintegerv breaks the positive validation');
+      self::error($data, 'key ' . 'fintegerv' . ' breaks the custom validation');
     }
 
     $valid['fintegerv'] = $value;
@@ -211,17 +230,17 @@ class FullPlainExample {
       $value = strval($value);
     }
     if (!is_string($value)) {
-      self::error($data, 'key fdatev is not a string');
+      self::error($data, 'key ' . 'fdatev' . ' is not a string');
     }
 
     $str = explode('-', $value);
     if (count($str) !== 3 || !checkdate($str[1], $str[2], $str[0])) {
-      self::error($data, 'key fdatev breaks the date validation');
+      self::error($data, 'key ' . 'fdatev' . ' breaks the date validation');
     }
     $value = Carbon::createFromFormat('!Y-m-d', $value);
 
     if ($value->lt(new Carbon('today'))) {
-      self::error($data, 'key fdatev breaks the mindate validation');
+      self::error($data, 'key ' . 'fdatev' . ' breaks the mindate validation');
     }
 
     $valid['fdatev'] = $value;

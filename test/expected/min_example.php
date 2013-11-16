@@ -41,15 +41,15 @@ class MinExample {
       $value = strval($value);
     }
     if (!is_string($value)) {
-      self::error($data, 'key myname is not a string');
+      self::error($data, 'key ' . 'myname' . ' is not a string');
     }
 
     if (Str::length($value) == 0) {
-      self::error($data, 'key myname breaks the required validation');
+      self::error($data, 'key ' . 'myname' . ' breaks the required validation');
     }
 
     if (Str::length($value) < 3) {
-      self::error($data, 'key myname breaks the minlength validation');
+      self::error($data, 'key ' . 'myname' . ' breaks the minlength validation');
     }
 
     $valid['myname'] = $value;

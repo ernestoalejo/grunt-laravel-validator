@@ -8,6 +8,8 @@ module.exports = function() {
     finteger: ['integer'],
     fboolean: ['boolean'],
 
+    fother: ['string', 'store:other'],
+
     // Most of the allowed processors for each field
     fstringv: [
       'string',
@@ -19,12 +21,9 @@ module.exports = function() {
       'minlength:4',
       'maxlength:5',
 
-      'store:fsv',
-
       'use:MyNamespace\\MyClass1',
       'use:MyNamespace\\MyClass2',
       'use:MyNamespace\\MyClass1',
-      'custom:$store[\'fsv\'] == \'foo\'',
 
       'in:value1,value2,value3',
       ['in', ['before,after', 'before2,after2']],
@@ -32,19 +31,22 @@ module.exports = function() {
       'use:Config',
       'inarray:Config::get(\'example\')',
 
-      'match:fsv',
+      'match:other',
+
+      'store:fsv',
+      'custom:$store[\'fsv\'] == \'foo\'',
     ],
     fintegerv: [
       'integer',
 
-      'store:fiv',
       'use:MyNamespace\\MyClass1',
-
-      'custom:$store[\'fiv\'] > 3',
 
       'minvalue:3',
       'maxvalue:7',
       'positive',
+
+      'store:fiv',
+      'custom:$store[\'fiv\'] > 3',
     ],
     fdatev: [
       'string',
