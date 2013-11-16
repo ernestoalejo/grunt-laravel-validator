@@ -25,62 +25,106 @@ In your project's Gruntfile, add a section named `laravel_validator` to the data
 ```js
 grunt.initConfig({
   laravel_validator: {
-    options: {
-      // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
+    target: {
+      files: {
+        // Target-specific file lists go here.
+      },
     },
   },
 })
 ```
 
-### Options
-
-#### options.separator
-Type: `String`
-Default value: `',  '`
-
-A string value that is used to do something with whatever.
-
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
-
-A string value that is used to do something else with whatever else.
 
 ### Usage Examples
 
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+#### All validator files
+In this example all files from the "app/validators" folder will be converted and output
+to the "app/lib/Validators" directory.
 
 ```js
 grunt.initConfig({
   laravel_validator: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
+    all: {
+      files: [
+        {
+          src: '**/*.js',
+          cwd: 'app/validators',
+          dest: 'app/lib/Validators',
+          expand: true,
+        },
+      ],
     },
   },
 })
 ```
 
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+
+## Laravel Usage
+To use the validators with Laravel, first import the classes adding this to the 
+*psr-0* section of the composer.json file.
+
+```json
+"autoload": {
+  "psr-0": {
+    "Validators": "app/lib"
+  }
+}
+```
+
+Then import and use the validator in your controllers to obtain the input data.
+
+```php
+class MyController extends \BaseController {
+
+  public function index() {
+    $data = \Validators\MyFolder\MyName::validate();
+
+    $entities = MyEntity::find($data['entity']);
+
+    ....
+  }
+
+}
+```
+
+
+## Validator data format
+### File global format
+Validator files are written in Javascript and imported via *require()*. You have
+to export a function that returns an object (the root object).
 
 ```js
-grunt.initConfig({
-  laravel_validator: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-})
+'use strict';
+
+module.exports = function() {
+  return {
+    ....
+  };
+};
 ```
+
+### Validator objects
+Validator objects are pairs of *key: value* items that associates a key in the
+input data with the processors it should apply to check it.
+
+```js
+return {
+  myfield: ['string', 'required', 'email'],
+};
+```
+
+Processors can require parameters.
+
+```js
+return {
+  myfield: ['string', 'minlength:3', 'in:foo,bar,baz'],
+};
+```
+
+When applying processors it's always required to "type" the input value; that is,
+to apply the *string*, the *integer* or the *boolean* filter to it before any other
+processor in the chain.
+
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
