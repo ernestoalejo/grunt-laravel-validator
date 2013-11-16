@@ -102,6 +102,9 @@ class RecursiveExample {
     if (!is_array($value)) {
       self::error($data, 'key ' . 'farr' . ' is not an array');
     }
+    if (count($value) < 2) {
+      self::error($data, 'array ' . 'farr' . ' has less than 2 items');
+    }
     $valid['farr'] = array();
 
     $size0 = count($data['farr']);
@@ -135,6 +138,9 @@ class RecursiveExample {
     }
     if (!is_array($value)) {
       self::error($data, 'key ' . 'farrobj' . ' is not an array');
+    }
+    if (count($value) < 0) {
+      self::error($data, 'array ' . 'farrobj' . ' has less than 0 items');
     }
     $valid['farrobj'] = array();
 
@@ -187,6 +193,9 @@ class RecursiveExample {
     if (!is_array($value)) {
       self::error($data, 'key ' . 'farr1' . ' is not an array');
     }
+    if (count($value) < 0) {
+      self::error($data, 'array ' . 'farr1' . ' has less than 0 items');
+    }
     $valid['farr1'] = array();
 
     $size2 = count($data['farr1']);
@@ -202,6 +211,9 @@ class RecursiveExample {
       if (!is_array($value)) {
         self::error($data, 'key ' . $i2 . ' is not an array');
       }
+      if (count($value) < 0) {
+        self::error($data, 'array ' . $i2 . ' has less than 0 items');
+      }
       $valid['farr1'][$i2] = array();
 
       $size3 = count($data['farr1'][$i2]);
@@ -216,6 +228,9 @@ class RecursiveExample {
         }
         if (!is_array($value)) {
           self::error($data, 'key ' . $i3 . ' is not an array');
+        }
+        if (count($value) < 0) {
+          self::error($data, 'array ' . $i3 . ' has less than 0 items');
         }
         $valid['farr1'][$i2][$i3] = array();
 
@@ -365,6 +380,9 @@ class RecursiveExample {
     if (!is_array($value)) {
       self::error($data, 'key ' . 'myarr' . ' is not an array');
     }
+    if (count($value) < 0) {
+      self::error($data, 'array ' . 'myarr' . ' has less than 0 items');
+    }
     $valid['myarr'] = array();
 
     $size5 = count($data['myarr']);
@@ -404,6 +422,9 @@ class RecursiveExample {
     }
     if (!is_array($value)) {
       self::error($data, 'key ' . 'myarr_extended' . ' is not an array');
+    }
+    if (count($value) < 0) {
+      self::error($data, 'array ' . 'myarr_extended' . ' has less than 0 items');
     }
     $valid['myarr_extended'] = array();
 
@@ -486,6 +507,9 @@ class RecursiveExample {
     if (!is_array($value)) {
       self::error($data, 'key ' . 'myarr_recursive' . ' is not an array');
     }
+    if (count($value) < 0) {
+      self::error($data, 'array ' . 'myarr_recursive' . ' has less than 0 items');
+    }
     $valid['myarr_recursive'] = array();
 
     $size7 = count($data['myarr_recursive']);
@@ -500,6 +524,9 @@ class RecursiveExample {
       }
       if (!is_array($value)) {
         self::error($data, 'key ' . $i7 . ' is not an array');
+      }
+      if (count($value) < 0) {
+        self::error($data, 'array ' . $i7 . ' has less than 0 items');
       }
       $valid['myarr_recursive'][$i7] = array();
 
@@ -516,6 +543,9 @@ class RecursiveExample {
         if (!is_array($value)) {
           self::error($data, 'key ' . $i8 . ' is not an array');
         }
+        if (count($value) < 0) {
+          self::error($data, 'array ' . $i8 . ' has less than 0 items');
+        }
         $valid['myarr_recursive'][$i7][$i8] = array();
 
         $size9 = count($data['myarr_recursive'][$i7][$i8]);
@@ -530,6 +560,9 @@ class RecursiveExample {
           }
           if (!is_array($value)) {
             self::error($data, 'key ' . $i9 . ' is not an array');
+          }
+          if (count($value) < 0) {
+            self::error($data, 'array ' . $i9 . ' has less than 0 items');
           }
           $valid['myarr_recursive'][$i7][$i8][$i9] = array();
 

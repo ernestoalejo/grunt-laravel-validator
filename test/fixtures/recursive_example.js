@@ -19,6 +19,7 @@ module.exports = function() {
 
     farr: {
       kind: 'array',
+      mincount: 2,
       fields: ['string'],
     },
 
