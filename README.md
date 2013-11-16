@@ -3,7 +3,7 @@
 > Generate PHP validations that use Laravel from JS descriptions of the input data format
 
 **NOTE:** This project is not related to the Laravel official Validator class. It's
-a stricter and statically generated alternative to them.
+a stricter and statically generated alternative to it.
 
 
 ## Getting Started
