@@ -1,7 +1,4 @@
     $value = $<%= object %>[<%= name %>];
-    if (is_null($value)) {
-      $value = 0;
-    }
     if (is_string($value)) {
       if ($value === 'true' || $value === '1' || $value === 'on') {
         $value = true;

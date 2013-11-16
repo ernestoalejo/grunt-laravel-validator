@@ -2,6 +2,7 @@
 
 > Generate PHP validations that use Laravel from JS descriptions of the input data format
 
+
 ## Getting Started
 This plugin requires Grunt `~0.4.1`
 
@@ -16,6 +17,7 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 ```js
 grunt.loadNpmTasks('grunt-laravel-validator');
 ```
+
 
 ## The "laravel_validator" task
 
@@ -33,7 +35,6 @@ grunt.initConfig({
   },
 })
 ```
-
 
 ### Usage Examples
 
@@ -103,7 +104,7 @@ module.exports = function() {
 };
 ```
 
-### Validator objects
+### Validator objects and processors
 Validator objects are pairs of *key: value* items that associates a key in the
 input data with the processors it should apply to check it.
 
@@ -126,8 +127,334 @@ to apply the *string*, the *integer* or the *boolean* filter to it before any ot
 processor in the chain.
 
 
+### Arrays and objects
+
+Items are not limited to strings, booleans and integers. The validator can handle
+arrays and objects too. Instead of using a list of processors, use an object with the kind and the fields.
+
+Specify the list of processors directly to handle arrays like
+*array('myfield' => array('foo', 'bar', 'baz'))*.
+
+```js
+return {
+  myfield: {
+    kind: 'array',
+    fields: ['string', 'minlength:3']
+  },
+};
+```
+
+Arrays can require a minimum number of items inside.
+
+```js
+return {
+  myfield: {
+    kind: 'array',
+    mincount: 3,
+    fields: ['string', 'minlength:3']
+  },
+};
+```
+
+Objects have a similar format. This validator will match objects with this structure:
+*array('myfield' => array('subfield1' => 'foo', 'subfield2' => 8))*
+
+```js
+return {
+  myfield: {
+    kind: 'object',
+    fields: {
+      subfield1: ['string', 'required'],
+      subfield2: ['integer', 'minvalue:7'],
+    },
+  },
+};
+```
+
+And finally you can combine both, matching arrays of objects.
+
+```js
+return {
+  labels: {
+    kind: 'array',
+    fields: {
+      kind: 'object',
+      fields: {
+        id: ['string', 'required'],
+        label: ['string', 'required', 'minlength:5'],
+      },
+    },
+  },
+};
+```
+
+### Conditionals
+
+To complete all the possibilities there is a way to build *if* blocks inside the
+generated code that allows for conditional validations.
+
+```js
+return {
+  conditional: {  // the key "conditional" will be ignored to generate the code
+    kind: 'conditional',
+    fields: {
+      kind: 'object',
+      condition: '3 != 2'
+      fields: {
+        mystr: ['string', 'required'],
+      },
+    },
+  },
+};
+```
+
+You can directly parse a field in the conditional block. This code will parse
+*array('myfield' => 'foo')*.
+
+```js
+return {
+  myfield: {
+    kind: 'conditional',
+    condition: 'true',
+    fields: ['string', 'required'],
+  },
+};
+```
+
+Finally you can require a stored value for your conditional (see the *store* processor for
+more info about this).
+
+```js
+return {
+  myfield: {
+    kind: 'conditional',
+    requiresStored: ['myvalue'],
+    condition: "$store['myvalue'] === 'foo'",
+    fields: ['string', 'required'],
+  },
+};
+```
+
+### Processors
+
+#### boolean
+Type the field as a boolean one. *'true', 'false'* (strings); *'1', '0'* (strings & integers);
+and 'on', 'off' (strings); are transformed to booleans too.
+
+```js
+return {
+  mybool: ['boolean'],
+};
+```
+
+#### custom
+Allows custom validations. You have to specify the fail condition. It should always
+be used in combination with the *store* processor.
+
+```js
+return {
+  nonFoo: ['string', 'store:foo', "custom:$store['foo'] == 'foo'"],
+};
+```
+
+#### date
+Validates date format and value. It expects a string in 'Y-m-d' format.
+
+```js
+return {
+  mydate: ['string', 'date'],
+};
+```
+
+#### email
+Checks if it's a valid email according to the same regular expression angular uses.
+
+```js
+return {
+  myemail: ['string', 'email'],
+};
+```
+
+#### in
+Provides a colon-separated list of possible values for the field. If the values
+have a colon inside, you can use the extended format.
+
+```js
+return {
+  myfield: ['string', 'in:value1,value2,value3'],
+
+  extended_field: [
+    'string',
+    ['in', ['value1,value1', 'value2,value2', 'value3']],
+  ],
+};
+```
+
+#### inarray
+A shorthand to check if the string value it's inside a globally available array
+(like a config, etc). Probably you'll need to import the global class first
+with the *use* processor.
+
+```js
+return {
+  myfield: ['string', 'use:Config', "in:Config::get('site.langs')"],
+};
+```
+
+#### integer
+Type the field as an integer one. Strings composed of digits only will be converted.
+
+```js
+return {
+  intfield: ['integer'],
+};
+```
+
+#### length
+Check if the string has the exact length specified as the first parameter.
+
+```js
+return {
+  myfield: ['string', 'length:10'],
+
+  my_md5_hash: ['string', 'length:32'],
+}
+```
+
+#### match
+Compare two fields to check they're equal. The first parameter is the key where
+the other value it's already stored.
+
+```js
+return {
+  password: ['string', 'minlength:8', 'store:pass'],
+  repeat_password: ['string', 'match:pass'],
+};
+```
+
+#### maxlength
+Maximum length (inclusive) for a string field.
+
+```js
+return {
+  myfield: ['string', 'maxlength:60'],
+};
+```
+
+#### maxvalue
+Maximum value (inclusive) for an integer field.
+
+```js
+return {
+  myfield: ['integer', 'maxvalue:1500'],
+};
+```
+
+#### mindate
+Minimum date allowed. The format it's anything the constructor of the Carbon class
+can read.
+
+```js
+return {
+  myfield: ['string', 'date', 'mindate:today'],
+};
+```
+
+#### minlength
+Minimum length (inclusive) for a string field.
+
+```js
+return {
+  myfield: ['string', 'minlength:60'],
+};
+```
+
+#### minvalue
+Minimum value (inclusive) for an integer field.
+
+```js
+return {
+  myfield: ['integer', 'minvalue:1500'],
+};
+```
+
+#### positive
+Requires the integer to be positive.
+
+```js
+return {
+  myfield: ['integer', 'positive'],
+};
+```
+
+#### regexp
+Checks the value against a regular expression specified as the first parameter.
+It's highly recommended to match the whole string (using ^ and $) unless it's
+explicitly needed to check only a part of the value.
+
+```js
+return {
+  myfield: ['string', 'regexp:/^(foo|bar)$/'],
+};
+```
+
+#### required
+Check that a string has at least length one, therefore it's the same as *minlength:1*.
+
+```js
+return {
+  myfield: ['string', 'required'],
+};
+```
+
+#### store
+Store the value of the field to use it later in custom validations, conditionals
+or matchs. The value it's stored in a local array called *store* that you can access
+directly using the key provided (see custom validation or conditionals for examples
+of how to use it).
+
+```js
+return {
+  myfield: ['string', 'store:mykey', "custom:$store['mykey'] == 'foo'"],
+  otherfield: ['string', 'match:mykey']
+};
+```
+
+#### string
+Type the field as a string. Float & integers will be converted.
+
+```js
+return {
+  mystr: ['string'],
+};
+```
+
+#### url
+Check if it's a valid URL according to the same regular expression Angular uses.
+
+```js
+return {
+  myurl: ['string', 'url'],
+};
+```
+
+#### use
+Add required dependencies to load in the PHP file.
+
+```js
+return {
+  myfield: [
+    'string',
+    'use:Config',
+    "inarray:Config::get('site.langs'),"
+  ],
+};
+```
+
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
+
 ## Release History
-_(Nothing yet)_
+* 2013-11-16   v0.1.0   Release initial laravel_validator task.
