@@ -3,7 +3,7 @@
 
 module.exports = function() {
   return {
-    fobj: {
+    /*fobj: {
       kind: 'object',
       fields: {
         fstring: ['string'],
@@ -47,7 +47,18 @@ module.exports = function() {
           },
         },
       },
-    },
+    },*/
+
+    ffoo: ['string', 'store:foo'],
+
+    /*fconditional: {
+      kind: 'conditional',
+      condition: '$store[\'foo\'] == \'bar\'',
+      requiresStored: ['foo'],
+      fields: {
+        fstring: ['string'],
+      }
+    }*/
   };
 };
 
