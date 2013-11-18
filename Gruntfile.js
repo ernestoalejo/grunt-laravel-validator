@@ -18,6 +18,7 @@ module.exports = function(grunt) {
         'tasks/*.js',
         'test/fixtures/*.js',
         '<%= nodeunit.tests %>',
+        'lib/**/*.js',
       ],
       options: {
         curly: true,
