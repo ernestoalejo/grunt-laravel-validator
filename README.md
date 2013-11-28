@@ -125,6 +125,19 @@ return {
 };
 ```
 
+Parameters can be passes in an extended format when they contain a colon inside; though
+the simple format should always be preferred.
+
+```js
+return {
+  myfield: [
+    'string',
+    ['minlength', 3],
+    ['in', 'foo', 'bar', 'baz'],
+  ],
+};
+```
+
 When applying processors it's always required to "type" the input value; that is,
 to apply the *string*, the *integer* or the *boolean* filter to it before any other
 processor in the chain.
@@ -288,7 +301,7 @@ return {
 
   extended_field: [
     'string',
-    ['in', ['value1,value1', 'value2,value2', 'value3']],
+    ['in', 'value1,value1', 'value2,value2', 'value3'],
   ],
 };
 ```

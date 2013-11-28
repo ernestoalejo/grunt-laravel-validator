@@ -26,7 +26,7 @@ module.exports = function() {
       'use:MyNamespace\\MyClass1',
 
       'in:value1,value2,value3',
-      ['in', ['before,after', 'before2,after2']],
+      ['in', 'before,after', 'before2,after2'],
 
       'use:Config',
       'inarray:Config::get(\'example\')',
