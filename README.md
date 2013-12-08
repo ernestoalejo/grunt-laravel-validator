@@ -125,6 +125,19 @@ return {
 };
 ```
 
+Parameters can be passes in an extended format when they contain a colon inside; though
+the simple format should always be preferred.
+
+```js
+return {
+  myfield: [
+    'string',
+    ['minlength', 3],
+    ['in', 'foo', 'bar', 'baz'],
+  ],
+};
+```
+
 When applying processors it's always required to "type" the input value; that is,
 to apply the *string*, the *integer* or the *boolean* filter to it before any other
 processor in the chain.
@@ -288,7 +301,7 @@ return {
 
   extended_field: [
     'string',
-    ['in', ['value1,value1', 'value2,value2', 'value3']],
+    ['in', 'value1,value1', 'value2,value2', 'value3'],
   ],
 };
 ```
@@ -460,6 +473,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 
 ## Release History
-* 2013-12-08   v0.1.4   Fix library files paths.
+* 2013-12-08   v0.1.5   Fix library files paths.
+* 2013-11-28   v0.1.4   Simpler extended validator format.
 * 2013-11-18   v0.1.3   Some lint fixes and README updates.
 * 2013-11-16   v0.1.0   Release initial laravel_validator task.
