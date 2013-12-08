@@ -1,7 +1,7 @@
 {
   "name": "grunt-laravel-validator",
   "description": "Generate PHP validations that use Laravel from JS descriptions of the input data format",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "homepage": "https://github.com/ernestoalejo/grunt-laravel-validator",
   "author": {
     "name": "Ernesto Alejo"
