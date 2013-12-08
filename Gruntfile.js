@@ -68,6 +68,16 @@ module.exports = function(grunt) {
           },
         ],
       },
+      subfolder: {
+        files: [
+          {
+            src: 'subfolder/*.js',
+            cwd: 'test/fixtures',
+            dest: 'tmp',
+            expand: true,
+          },
+        ],
+      }
     },
 
     // Unit tests.

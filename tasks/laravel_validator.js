@@ -23,6 +23,9 @@ module.exports = function(grunt) {
       file.dest = file.dest.replace(/\.js$/i, '.php');
 
       var source = require(path.resolve(src))();
+      if (file.orig.cwd) {
+        src = path.relative(file.orig.cwd, src);
+      }
       var generator = new Generator(source, src);
       grunt.file.write(file.dest, generator.run());
 

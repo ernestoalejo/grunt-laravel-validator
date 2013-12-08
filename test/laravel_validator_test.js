@@ -54,4 +54,13 @@ exports.laravel_validator = {
 
     test.done();
   },
+  subfolder: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/subfolder/example.php');
+    var expected = grunt.file.read('test/expected/subfolder/example.php');
+    test.equal(actual, expected, 'should describe what the subfolder behavior is.');
+
+    test.done();
+  },
 };
