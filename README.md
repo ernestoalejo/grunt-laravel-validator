@@ -460,5 +460,6 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 
 ## Release History
+* 2013-12-08   v0.1.4   Fix library files paths.
 * 2013-11-18   v0.1.3   Some lint fixes and README updates.
 * 2013-11-16   v0.1.0   Release initial laravel_validator task.
