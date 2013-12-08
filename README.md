@@ -473,6 +473,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 
 ## Release History
+* 2013-12-08   v0.1.7   Less verbose output.
 * 2013-12-08   v0.1.6   Fix generated namespaces.
 * 2013-12-08   v0.1.5   Fix library files paths.
 * 2013-11-28   v0.1.4   Simpler extended validator format.

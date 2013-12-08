@@ -29,7 +29,7 @@ module.exports = function(grunt) {
       var generator = new Generator(source, src);
       grunt.file.write(file.dest, generator.run());
 
-      grunt.log.writeln('File "' + file.dest + '" created.');
+      grunt.verbose.writeln('File "' + file.dest + '" created.');
     });
   });
 };
