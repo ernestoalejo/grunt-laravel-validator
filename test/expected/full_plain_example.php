@@ -96,6 +96,25 @@ class FullPlainExample {
 
     $valid['fboolean'] = $value;
 
+    if (!isset($data['ffloat'])) {
+      $data['ffloat'] = null;
+    }
+
+    $value = $data['ffloat'];
+    if (is_null($value)) {
+      $value = 0.0;
+    }
+    if (is_string($value)) {
+      if (preg_match('/^-?[0-9]+(\.[0-9]+)?$/', $value)) {
+        $value = floatval($value);
+      }
+    }
+    if (!is_float($value)) {
+      self::error($data, 'key ' . 'ffloat' . ' is not a float');
+    }
+
+    $valid['ffloat'] = $value;
+
     if (!isset($data['fother'])) {
       $data['fother'] = null;
     }

@@ -139,7 +139,7 @@ return {
 ```
 
 When applying processors it's always required to "type" the input value; that is,
-to apply the *string*, the *integer* or the *boolean* filter to it before any other
+to apply the *string*, the *integer*, the *float* or the *boolean* filter to it before any other
 processor in the chain.
 
 
@@ -288,6 +288,17 @@ Checks if it's a valid email according to the same regular expression angular us
 ```js
 return {
   myemail: ['string', 'email'],
+};
+```
+
+#### float
+Type the field as a float one. Strings containing an integer (numbers only) will
+be converted. Strings with a decimal point will be converted too. Finally, negative
+numbers will be read correctly. Positive numbers preceded by a '+' sign will **not** be accepted.
+
+```js
+return {
+  intfield: ['float'],
 };
 ```
 
@@ -473,6 +484,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 
 ## Release History
+* 2013-12-08   v0.2.0   Add typed validation: float.
 * 2013-12-08   v0.1.7   Less verbose output.
 * 2013-12-08   v0.1.6   Fix generated namespaces.
 * 2013-12-08   v0.1.5   Fix library files paths.

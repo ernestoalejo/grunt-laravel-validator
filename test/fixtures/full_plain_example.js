@@ -7,6 +7,7 @@ module.exports = function() {
     fstring: ['string'],
     finteger: ['integer'],
     fboolean: ['boolean'],
+    ffloat: ['float'],
 
     fother: ['string', 'store:other'],
 
