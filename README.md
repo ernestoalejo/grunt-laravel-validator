@@ -484,6 +484,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 
 ## Release History
+* 2013-12-17   v0.2.1   Minor validator namespace fix for subfolders.
 * 2013-12-15   v0.2.0   Add typed validation: float.
 * 2013-12-08   v0.1.7   Less verbose output.
 * 2013-12-08   v0.1.6   Fix generated namespaces.
