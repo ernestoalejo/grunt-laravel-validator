@@ -484,6 +484,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 
 ## Release History
+* 2013-12-21   v0.3.1   Email validation doesn't imply required now.
 * 2013-12-21   v0.3.0   Minlength validation doesn't imply required now.
 * 2013-12-17   v0.2.1   Minor validator namespace fix for subfolders.
 * 2013-12-15   v0.2.0   Add typed validation: float.
