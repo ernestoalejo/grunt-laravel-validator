@@ -48,7 +48,7 @@ class Example {
       self::error($data, 'key ' . 'myname' . ' breaks the required validation');
     }
 
-    if (Str::length($value) < 3) {
+    if (Str::length($value) > 0 && Str::length($value) < 3) {
       self::error($data, 'key ' . 'myname' . ' breaks the minlength validation');
     }
 

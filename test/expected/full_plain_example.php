@@ -165,7 +165,7 @@ class FullPlainExample {
       self::error($data, 'key ' . 'fstringv' . ' breaks the length validation');
     }
 
-    if (Str::length($value) < 4) {
+    if (Str::length($value) > 0 && Str::length($value) < 4) {
       self::error($data, 'key ' . 'fstringv' . ' breaks the minlength validation');
     }
 
