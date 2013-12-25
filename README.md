@@ -125,7 +125,7 @@ return {
 };
 ```
 
-Parameters can be passes in an extended format when they contain a colon inside; though
+Parameters can be passed in an extended format when they contain a colon inside; though
 the simple format should always be preferred.
 
 ```js
@@ -141,6 +141,9 @@ return {
 When applying processors it's always required to "type" the input value; that is,
 to apply the *string*, the *integer*, the *float* or the *boolean* filter to it before any other
 processor in the chain.
+
+**NOTE:** If you use "conditional" or "unusedXXX" (XXX could be whatever) the key
+will be completely ignored and not generated.
 
 
 ### Arrays and objects
@@ -206,12 +209,14 @@ return {
 
 ### Conditionals
 
-To complete all the possibilities there is a way to build *if* blocks inside the
-generated code that allows for conditional validations.
+There is a way to build *if* blocks inside the generated code that allows for conditional validations.
+
+**NOTE:** If you use "conditional" or "unusedXXX" (XXX could be whatever) the key
+will be completely ignored and not generated.
 
 ```js
 return {
-  conditional: {  // the key "conditional" will be ignored to generate the code
+  conditional: {
     kind: 'conditional',
     fields: {
       kind: 'object',
@@ -250,6 +255,38 @@ return {
   },
 };
 ```
+
+
+### Switchs
+
+Chaining *if* blocks for the same validation key can be awkward. Switchs help
+to define a list of different validations for the same key depending on a
+condition.
+
+```js
+return {
+  chained: {
+    kind: 'switch',
+    requiresStored: ['foobar'],
+    cases: [
+      {
+        condition: '$store["foobar"] === "qux"',
+        fields: ['string', 'required'],
+      },
+      {
+        condition: '$store["foobar"] === "qux"',
+        fields: {
+          kind: 'object',
+          fields: {
+            mykey: ['integer', 'positive'],
+          },
+        },
+      },
+    ],
+  },
+};
+```
+
 
 ### Processors
 
@@ -484,6 +521,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 
 ## Release History
+* 2013-12-25   v0.4.0   Ignore keys starting with "unused". Add switch kind.
 * 2013-12-21   v0.3.1   Email validation doesn't imply required now.
 * 2013-12-21   v0.3.0   Minlength validation doesn't imply required now.
 * 2013-12-17   v0.2.1   Minor validator namespace fix for subfolders.

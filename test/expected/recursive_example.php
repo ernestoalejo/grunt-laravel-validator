@@ -591,6 +591,54 @@ class RecursiveExample {
 
     }
 
+    if (!isset($data['foo'])) {
+      $data['foo'] = null;
+    }
+
+    if ($store["bar"] === "baz") {
+
+      $value = $data['foo'];
+      if (is_null($value)) {
+        $value = '';
+      }
+      if (is_int($value) || is_float($value)) {
+        $value = strval($value);
+      }
+      if (!is_string($value)) {
+        self::error($data, 'key ' . 'foo' . ' is not a string');
+      }
+
+      if (Str::length($value) == 0) {
+        self::error($data, 'key ' . 'foo' . ' breaks the required validation');
+      }
+
+      $valid['foo'] = $value;
+
+    }
+
+    if ($store["bar"] === "qux") {
+
+      $value = $data['foo'];
+      if (is_null($value)) {
+        $value = 0;
+      }
+      if (is_string($value)) {
+        if (ctype_digit($value)) {
+          $value = intval($value);
+        }
+      }
+      if (!is_int($value)) {
+        self::error($data, 'key ' . 'foo' . ' is not an integer');
+      }
+
+      if ($value < 0) {
+        self::error($data, 'key ' . 'foo' . ' breaks the positive validation');
+      }
+
+      $valid['foo'] = $value;
+
+    }
+
     return $valid;
   }
 

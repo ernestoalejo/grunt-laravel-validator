@@ -121,6 +121,21 @@ module.exports = function() {
         },
       },
     },
+
+    foo: {
+      kind: 'switch',
+      requiresStored: ['bar'],
+      cases: [
+        {
+          condition: '$store["bar"] === "baz"',
+          fields: ['string', 'required'],
+        },
+        {
+          condition: '$store["bar"] === "qux"',
+          fields: ['integer', 'positive'],
+        },
+      ],
+    },
   };
 };
 
