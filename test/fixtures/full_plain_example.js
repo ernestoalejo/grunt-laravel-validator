@@ -53,6 +53,7 @@ module.exports = function() {
       'string',
       'date',
       'mindate:today',
+      'maxdate:tomorrow',
     ],
   };
 };

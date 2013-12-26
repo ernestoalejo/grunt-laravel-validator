@@ -259,6 +259,10 @@ class FullPlainExample {
       self::error($data, 'key ' . 'fdatev' . ' breaks the mindate validation');
     }
 
+    if ($value->gt(new Carbon('tomorrow'))) {
+      self::error($data, 'key ' . 'fdatev' . ' breaks the maxdate validation');
+    }
+
     $valid['fdatev'] = $value;
 
     return $valid;
