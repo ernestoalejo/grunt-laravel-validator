@@ -55,5 +55,10 @@ module.exports = function() {
       'mindate:today',
       'maxdate:tomorrow',
     ],
+    ffloatv: [
+      'float',
+      'minvalue:3',
+      'maxvalue:7',
+    ],
   };
 };

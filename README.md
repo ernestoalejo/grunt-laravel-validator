@@ -531,6 +531,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 
 ## Release History
+* 2013-12-27   v0.5.1   Validations positive, minvalue & maxvalue can be applied to floats too.
 * 2013-12-27   v0.5.0   Add maxdate validation.
 * 2013-12-25   v0.4.0   Ignore keys starting with "unused". Add switch kind.
 * 2013-12-21   v0.3.1   Email validation doesn't imply required now.
