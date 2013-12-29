@@ -7,6 +7,9 @@
         $value = floatval($value);
       }
     }
+    if (is_int($value)) {
+      $value = floatval($value);
+    }
     if (!is_float($value)) {
       self::error($data, 'key ' . <%= name %> . ' is not a float');
     }

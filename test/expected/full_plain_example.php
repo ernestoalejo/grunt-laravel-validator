@@ -109,6 +109,9 @@ class FullPlainExample {
         $value = floatval($value);
       }
     }
+    if (is_int($value)) {
+      $value = floatval($value);
+    }
     if (!is_float($value)) {
       self::error($data, 'key ' . 'ffloat' . ' is not a float');
     }
@@ -153,7 +156,7 @@ class FullPlainExample {
       self::error($data, 'key ' . 'fstringv' . ' breaks the email validation');
     }
 
-    if (!preg_match('/^(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?$/', $value)) {
+    if (Str::length($value) > 0 && !preg_match('/^(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?$/', $value)) {
       self::error($data, 'key ' . 'fstringv' . ' breaks the url validation');
     }
 
@@ -277,6 +280,9 @@ class FullPlainExample {
       if (preg_match('/^-?[0-9]+(\.[0-9]+)?$/', $value)) {
         $value = floatval($value);
       }
+    }
+    if (is_int($value)) {
+      $value = floatval($value);
     }
     if (!is_float($value)) {
       self::error($data, 'key ' . 'ffloatv' . ' is not a float');
