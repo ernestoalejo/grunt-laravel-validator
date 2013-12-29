@@ -531,6 +531,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 
 ## Release History
+* 2013-12-29   v0.5.4   Add validator error to the exception message.
 * 2013-12-29   v0.5.3   Url validation doesn't imply required now.
 * 2013-12-27   v0.5.2   Convert integer to floats.
 * 2013-12-27   v0.5.1   Validations positive, minvalue & maxvalue can be applied to floats too.
