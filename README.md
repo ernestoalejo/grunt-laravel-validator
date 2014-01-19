@@ -531,6 +531,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 
 ## Release History
+* 2014-01-20   v0.5.7   Another fix: use carbon modifiers.
 * 2014-01-20   v0.5.6   Another mindate & maxdate fix.
 * 2014-01-20   v0.5.5   Make mindate & maxdate inclusive.
 * 2013-12-29   v0.5.4   Add validator error to the exception message.
