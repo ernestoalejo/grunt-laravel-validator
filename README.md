@@ -531,6 +531,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 
 ## Release History
+* 2014-01-20   v0.5.10  Use the same timezone for comparisons.
 * 2014-01-20   v0.5.9   Fix typo.
 * 2014-01-20   v0.5.8   Compare and save dates in the correct timezones.
 * 2014-01-20   v0.5.7   Another fix: use carbon modifiers.
