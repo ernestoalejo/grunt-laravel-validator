@@ -8,4 +8,4 @@
     if (!is_string($timezone) || !in_array($timezone, DateTimeZone::listIdentifiers())) {
       $timezone = 'UTC';
     }
-    $VALUE->setTimezone($timezone);
+    $value->setTimezone($timezone);
