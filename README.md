@@ -531,6 +531,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 
 ## Release History
+* 2014-01-20   v0.5.8   Compare and save dates in the correct timezones.
 * 2014-01-20   v0.5.7   Another fix: use carbon modifiers.
 * 2014-01-20   v0.5.6   Another mindate & maxdate fix.
 * 2014-01-20   v0.5.5   Make mindate & maxdate inclusive.

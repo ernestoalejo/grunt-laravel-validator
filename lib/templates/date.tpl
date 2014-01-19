@@ -3,3 +3,9 @@
       self::error($data, 'key ' . <%= name %> . ' breaks the date validation');
     }
     $value = Carbon::createFromFormat('!Y-m-d', $value);
+
+    $timezone = isset($_COOKIE['timezone']) ? $_COOKIE['timezone'] : 'UTC';
+    if (!is_string($timezone) || !in_array($timezone, DateTimeZone::listIdentifiers())) {
+      $timezone = 'UTC';
+    }
+    $VALUE->setTimezone($timezone);
