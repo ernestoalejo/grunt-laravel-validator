@@ -310,12 +310,12 @@ return {
 };
 ```
 
-#### date
-Validates date format and value. It expects a string in 'Y-m-d' format.
+#### datetime
+Validates datetime format and value. It expects a ISO 8601 string.
 
 ```js
 return {
-  mydate: ['string', 'date'],
+  mydatetime: ['string', 'datetime'],
 };
 ```
 
@@ -396,13 +396,13 @@ return {
 };
 ```
 
-#### maxdate
-Maximum date allowed. The format it's anything the constructor of the Carbon class
+#### maxdatetime
+Maximum datetime allowed. The format it's anything the constructor of the Carbon class
 can read. It's inclusive.
 
 ```js
 return {
-  myfield: ['string', 'date', 'maxdate:today'],
+  myfield: ['string', 'datetime', 'maxdatetime:now'],
 };
 ```
 
@@ -424,13 +424,13 @@ return {
 };
 ```
 
-#### mindate
-Minimum date allowed. The format it's anything the constructor of the Carbon class
+#### mindatetime
+Minimum datetime allowed. The format it's anything the constructor of the Carbon class
 can read. It's inclusive.
 
 ```js
 return {
-  myfield: ['string', 'date', 'mindate:today'],
+  myfield: ['string', 'datetime', 'mindatetime:now'],
 };
 ```
 
@@ -531,6 +531,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 
 ## Release History
+* 2014-01-21   v0.6.0   Remove date, mindate & maxdate processors. Use datetime, mindatetime & maxdatetime instead.
 * 2014-01-20   v0.5.10  Use the same timezone for comparisons.
 * 2014-01-20   v0.5.9   Fix typo.
 * 2014-01-20   v0.5.8   Compare and save dates in the correct timezones.

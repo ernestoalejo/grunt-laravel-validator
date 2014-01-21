@@ -9,6 +9,7 @@ use MyNamespace\MyClass1;
 use MyNamespace\MyClass2;
 use Config;
 use Carbon\Carbon;
+use \DateTimeZone;
 
 class FullPlainExample {
 
@@ -22,7 +23,7 @@ class FullPlainExample {
     Log::error($msg);
     Log::debug($caller['file'] . '::' . $caller['line']);
     Log::debug(var_export($data, TRUE));
-    App::abort(403, 'validator error');
+    App::abort(403, 'validator error: ' . $msg);
   }
 
   public static function validateData($data) {
@@ -237,11 +238,11 @@ class FullPlainExample {
 
     $valid['fintegerv'] = $value;
 
-    if (!isset($data['fdatev'])) {
-      $data['fdatev'] = null;
+    if (!isset($data['fdatetimev'])) {
+      $data['fdatetimev'] = null;
     }
 
-    $value = $data['fdatev'];
+    $value = $data['fdatetimev'];
     if (is_null($value)) {
       $value = '';
     }
@@ -249,24 +250,25 @@ class FullPlainExample {
       $value = strval($value);
     }
     if (!is_string($value)) {
-      self::error($data, 'key ' . 'fdatev' . ' is not a string');
+      self::error($data, 'key ' . 'fdatetimev' . ' is not a string');
     }
 
-    $str = explode('-', $value);
-    if (count($str) !== 3 || !checkdate($str[1], $str[2], $str[0])) {
-      self::error($data, 'key ' . 'fdatev' . ' breaks the date validation');
+    try {
+      $value = new Carbon($value);
+    } catch (\Exception $e) {
+      self::error($data, 'key ' . 'fdatetimev' . ' breaks the datetime validation');
     }
-    $value = Carbon::createFromFormat('!Y-m-d', $value);
+    $value->setTimezone('UTC');
 
     if ($value->lt(new Carbon('today'))) {
-      self::error($data, 'key ' . 'fdatev' . ' breaks the mindate validation');
+      self::error($data, 'key ' . 'fdatetimev' . ' breaks the mindatetime validation');
     }
 
     if ($value->gt(new Carbon('tomorrow'))) {
-      self::error($data, 'key ' . 'fdatev' . ' breaks the maxdate validation');
+      self::error($data, 'key ' . 'fdatetimev' . ' breaks the maxdatetime validation');
     }
 
-    $valid['fdatev'] = $value;
+    $valid['fdatetimev'] = $value;
 
     if (!isset($data['ffloatv'])) {
       $data['ffloatv'] = null;

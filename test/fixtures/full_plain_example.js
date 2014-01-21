@@ -49,11 +49,11 @@ module.exports = function() {
       'store:fiv',
       'custom:$store[\'fiv\'] > 3',
     ],
-    fdatev: [
+    fdatetimev: [
       'string',
-      'date',
-      'mindate:today',
-      'maxdate:tomorrow',
+      'datetime',
+      'mindatetime:today',
+      'maxdatetime:tomorrow',
     ],
     ffloatv: [
       'float',
