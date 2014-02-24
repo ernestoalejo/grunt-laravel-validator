@@ -1,6 +1,6 @@
 {
   "name": "grunt-laravel-validator",
-  "description": "Generate PHP validations that use Laravel from JS descriptions of the input data format",
+  "description": "Generate PHP validations from short and concise descriptions of the input format.",
   "version": "0.6.0",
   "homepage": "https://github.com/ernestoalejo/grunt-laravel-validator",
   "author": {
@@ -29,19 +29,19 @@
   "devDependencies": {
     "grunt-contrib-jshint": "~0.6.0",
     "grunt-contrib-clean": "~0.4.0",
-    "grunt-contrib-nodeunit": "~0.2.0",
-    "grunt": "~0.4.1",
+    "grunt": "~0.4.2",
     "jshint-stylish": "~0.1.3",
-    "grunt-bump": "0.0.11"
+    "grunt-contrib-nodeunit": "~0.3.2"
   },
   "peerDependencies": {
     "grunt": "~0.4.1"
   },
   "keywords": [
-    "gruntplugin"
+    "gruntplugin",
+    "laravel",
+    "validator"
   ],
   "dependencies": {
-    "change-case": "~1.0.2",
-    "array-extended": "0.0.9"
+    "laravel-validator": "~0.1.3"
   }
 }

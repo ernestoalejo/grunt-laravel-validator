@@ -48,20 +48,10 @@ module.exports = function(grunt) {
 
     // Configuration to be run (and then tested).
     laravel_validator: {
-      all_examples: {
+      min_example: {
         files: [
           {
-            src: '*.js',
-            cwd: 'test/fixtures',
-            dest: 'tmp',
-            expand: true,
-          },
-        ],
-      },
-      example: {
-        files: [
-          {
-            src: 'recursive_example.js',
+            src: 'min_example.val',
             cwd: 'test/fixtures',
             dest: 'tmp',
             expand: true,
@@ -71,7 +61,7 @@ module.exports = function(grunt) {
       subfolder: {
         files: [
           {
-            src: 'subfolder/*.js',
+            src: 'subfolder/example.val',
             cwd: 'test/fixtures',
             dest: 'tmp',
             expand: true,
@@ -85,19 +75,12 @@ module.exports = function(grunt) {
       tests: ['test/*_test.js'],
     },
 
-    bump: {
-      options: {
-        pushTo: 'origin',
-      },
-    },
-
   });
 
   // Actually load this plugin's task(s).
   grunt.loadTasks('tasks');
 
   // These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-bump');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
