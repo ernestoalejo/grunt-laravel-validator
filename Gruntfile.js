@@ -89,6 +89,8 @@ module.exports = function(grunt) {
   // plugin's task(s), then test the result.
   grunt.registerTask('test', ['clean', 'laravel_validator', 'nodeunit']);
 
+  grunt.registerTask('lint', ['jshint']);
+
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);
 
