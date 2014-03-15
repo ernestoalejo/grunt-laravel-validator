@@ -51,7 +51,7 @@ module.exports = function(grunt) {
       min_example: {
         files: [
           {
-            src: 'min_example.val',
+            src: 'min_example.js',
             cwd: 'test/fixtures',
             dest: 'tmp',
             expand: true,
@@ -61,7 +61,7 @@ module.exports = function(grunt) {
       subfolder: {
         files: [
           {
-            src: 'subfolder/example.val',
+            src: 'subfolder/example.js',
             cwd: 'test/fixtures',
             dest: 'tmp',
             expand: true,

@@ -9,9 +9,7 @@
 
 module.exports = function(grunt) {
   grunt.registerMultiTask('laravel_validator', '', function() {
-    var validator = require('laravel-validator'),
-        path = require('path'),
-        fs = require('fs');
+    var validator = require('laravel-validator');
 
     this.files.forEach(function(file) {
       var src = file.src[0];
@@ -19,16 +17,10 @@ module.exports = function(grunt) {
         grunt.log.warn('Source file "' + src + '" not found.');
         return;
       }
-      file.dest = file.dest.replace(/\.val$/i, '.php');
+      file.dest = file.dest.replace(/\.js$/i, '.php');
 
-      var contents = fs.readFileSync(path.resolve(src));
-      if (file.orig.cwd) {
-        src = path.relative(file.orig.cwd, src);
-      }
-
-      var source = validator.parse(contents.toString());
-      var generated = validator.generate(src, source);
-
+      var base = file.orig.cwd ? file.orig.cwd : '.';
+      var generated = validator.generate(base, src);
       grunt.file.write(file.dest, generated);
 
       grunt.verbose.writeln('File "' + file.dest + '" created.');
