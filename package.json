@@ -42,6 +42,6 @@
     "validator"
   ],
   "dependencies": {
-    "laravel-validator": "~1.0.3"
+    "laravel-validator": "~1.0.4"
   }
 }
